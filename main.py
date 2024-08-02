@@ -15,14 +15,7 @@ for message in st.session_state.messages:
 
 
 
-# Function for generating LLM response
-def generate_response(prompt_input):
-    # Hugging Face Login
-    #sign = Login(email, passwd)
-    #cookies = sign.login()
-    # Create ChatBot                        
-    #chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
-    return firstaidschatbot(prompt_input)
+
 
 # User-provided prompt
 if prompt := st.chat_input():
@@ -37,7 +30,7 @@ if prompt := st.chat_input():
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = generate_response(f"{st.session_state.messages[-10:]}" ) 
+            response = firstaidschatbot(f"{st.session_state.messages[-10:]}" ) 
             st.write(response) 
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
